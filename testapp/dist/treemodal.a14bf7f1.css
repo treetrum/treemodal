@@ -1,0 +1,70 @@
+.treemodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow-y: scroll;
+  visibility: hidden;
+  opacity: 0;
+  transition: 350ms ease opacity;
+}
+.treemodal__inner {
+  margin: auto 0;
+  padding: 0;
+  transform: translateY(20px);
+  transition: 350ms ease all;
+  opacity: 0;
+}
+.treemodal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+.treemodal.is-open .treemodal__inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+.treemodal__close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+.treemodal__close__button {
+  padding: 20px;
+  border: 0;
+  transition: 200ms ease all;
+  background-color: transparent;
+  cursor: pointer;
+}
+.treemodal__close__button:hover .css-close {
+  opacity: 1;
+}
+.treemodal__close__button .css-close {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  opacity: 0.8;
+  transition: 200ms ease all;
+}
+.treemodal__close__button .css-close::before, .treemodal__close__button .css-close::after {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  content: " ";
+  height: 30px;
+  width: 2px;
+  background-color: white;
+}
+.treemodal__close__button .css-close::before {
+  transform: rotate(45deg);
+}
+.treemodal__close__button .css-close::after {
+  transform: rotate(-45deg);
+}
+
+/*# sourceMappingURL=/treemodal.a14bf7f1.css.map */
