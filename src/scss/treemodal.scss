@@ -1,27 +1,4 @@
-@mixin closeIcon($size, $line_thickness, $color) {
-    position: relative;
-    width: $size;
-    height: $size;
-
-    &::before,
-    &::after {
-        position: absolute;
-        top: 0;
-        left: ($size - $line_thickness) / 2;
-        content: " ";
-        height: $size;
-        width: $line_thickness;
-        background-color: $color;
-    }
-
-    &::before {
-        transform: rotate(45deg);
-    }
-
-    &::after {
-        transform: rotate(-45deg);
-    }
-}
+@import "./mixins/closeIcon";
 
 .treemodal {
     position: fixed;
