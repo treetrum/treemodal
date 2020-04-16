@@ -45,7 +45,7 @@ const go = () => {
 
 go();
 
-if (process.argv[2].indexOf("-w") !== -1) {
+if (process.argv[2] && process.argv[2].indexOf("-w") !== -1) {
     console.log("WATCHING");
     watch(INPUT_FILE, {}, () => {
         go();
