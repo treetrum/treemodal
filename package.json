@@ -7,8 +7,11 @@
         "prebuild": "node scripts/clean.js",
         "prepare": "npm run build",
         "build": "npm-run-all -s build-js build-sass",
+        "watch-js": "babel src/js -d dist/ -w",
         "build-js": "babel src/js -d dist/",
-        "build-sass": "node scripts/sass.js"
+        "build-sass": "node scripts/sass.js",
+        "start": "npm-run-all -p watch-js testapp",
+        "testapp": "parcel testapp/index.html"
     },
     "keywords": [],
     "author": "",

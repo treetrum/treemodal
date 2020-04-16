@@ -1,3 +1,3 @@
-import TreeModal from "../src/js/TreeModal";
+import treemodal from "../dist/TreeModal";
 
-TreeModal.init();
+treemodal.init();

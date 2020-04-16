@@ -1,22 +1,15 @@
 import wrapEl from "./utils/wrapEl";
 
 class TreeModal {
-    static init = () => {
-        const els = document.querySelectorAll("[data-treemodal]");
-        els.forEach(el => {
-            new TreeModal(el);
-        });
-    };
-
     static DEFAULT_OPTIONS = {
         classes: {
-            active: "is-open"
+            active: "is-open",
         },
         callbacks: {
             onShow: () => {},
-            onHide: () => {}
+            onHide: () => {},
         },
-        autoOpen: false
+        autoOpen: false,
     };
 
     constructor(el, options = {}) {
@@ -60,7 +53,7 @@ class TreeModal {
         this.close.addEventListener("click", this.hide);
 
         // Handle escape to close
-        window.addEventListener("keyup", event => {
+        window.addEventListener("keyup", (event) => {
             if (this.isShown && event.key === "Escape") {
                 this.hide();
             }
@@ -110,4 +103,14 @@ class TreeModal {
     };
 }
 
-export default TreeModal;
+const init = (selector = "[data-treemodal]") => {
+    const els = document.querySelectorAll(selector);
+    els.forEach((el) => {
+        new TreeModal(el);
+    });
+};
+
+export default {
+    init,
+    TreeModal,
+};
