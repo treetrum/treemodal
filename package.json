@@ -2,7 +2,7 @@
     "name": "@treetrum/treemodal",
     "version": "1.0.3",
     "description": "",
-    "main": "src/js/TreeModal.js",
+    "main": "dist/TreeModal.js",
     "scripts": {
         "prebuild": "node scripts/clean.js",
         "prepare": "npm run build",
