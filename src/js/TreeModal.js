@@ -2,6 +2,7 @@ import wrapEl from "./utils/wrapEl";
 
 class TreeModal {
     static DEFAULT_OPTIONS = {
+        zIndex: 9999,
         classes: {
             active: "is-open",
         },
@@ -65,6 +66,7 @@ class TreeModal {
         this.wrap = document.createElement("div");
         this.wrap.classList.add("treemodal");
         this.wrap.setAttribute("data-treemodal-id", this.id);
+        this.wrap.style.zIndex = TreeModal.DEFAULT_OPTIONS.zIndex;
 
         // Create inner
         this.inner = document.createElement("div");
@@ -84,6 +86,7 @@ class TreeModal {
         	</div>`
         );
         this.close = this.wrap.querySelector(".treemodal__close__button");
+        document.body.appendChild(this.wrap);
     };
 
     show = () => {

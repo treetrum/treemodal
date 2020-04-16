@@ -9,8 +9,9 @@
         "build": "npm-run-all -s build-js build-sass",
         "watch-js": "babel src/js -d dist/ -w",
         "build-js": "babel src/js -d dist/",
+        "watch-sass": "node scripts/sass.js -w",
         "build-sass": "node scripts/sass.js",
-        "start": "npm-run-all -p watch-js testapp",
+        "start": "npm-run-all -p watch-js watch-sass testapp",
         "testapp": "parcel testapp/index.html"
     },
     "keywords": [],
@@ -27,5 +28,8 @@
         "parcel": "^1.12.4",
         "rimraf": "^3.0.2",
         "sass": "^1.26.3"
+    },
+    "dependencies": {
+        "node-watch": "^0.6.3"
     }
 }

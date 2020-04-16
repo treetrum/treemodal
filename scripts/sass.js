@@ -1,6 +1,7 @@
 const sass = require("node-sass");
 const path = require("path");
 const fs = require("fs");
+const watch = require("node-watch");
 
 const INPUT_FILE = path.join(__dirname, "../src/scss/treemodal.scss");
 const OUTPUT_FILE = path.join(__dirname, "../dist/treemodal.css");
@@ -11,14 +12,14 @@ const renderSassToDisk = ({ file, outFile, ...opts }) => {
         {
             file,
             outFile,
-            ...opts
+            ...opts,
         },
         (err, result) => {
             if (err) {
                 console.error(err);
                 return;
             }
-            fs.writeFile(outFile, result.css, err => {
+            fs.writeFile(outFile, result.css, (err) => {
                 if (err) {
                     console.error(err);
                     return;
@@ -29,14 +30,24 @@ const renderSassToDisk = ({ file, outFile, ...opts }) => {
     );
 };
 
-renderSassToDisk({
-    file: INPUT_FILE,
-    outFile: OUTPUT_FILE,
-    outputStyle: "expanded"
-});
+const go = () => {
+    renderSassToDisk({
+        file: INPUT_FILE,
+        outFile: OUTPUT_FILE,
+        outputStyle: "expanded",
+    });
+    renderSassToDisk({
+        file: INPUT_FILE,
+        outFile: OUTPUT_FILE_MIN,
+        outputStyle: "compressed",
+    });
+};
 
-renderSassToDisk({
-    file: INPUT_FILE,
-    outFile: OUTPUT_FILE_MIN,
-    outputStyle: "compressed"
-});
+go();
+
+if (process.argv[2].indexOf("-w") !== -1) {
+    console.log("WATCHING");
+    watch(INPUT_FILE, {}, () => {
+        go();
+    });
+}
