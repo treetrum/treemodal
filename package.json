@@ -7,7 +7,7 @@
         "prebuild": "node scripts/clean.js",
         "prepare": "npm run build",
         "build": "npm-run-all -s build-js build-sass",
-        "build-js": "babel -o dist/TreeModal.js src/js/TreeModal.js",
+        "build-js": "npx parcel build src/js/TreeModal.js",
         "build-sass": "node scripts/sass.js"
     },
     "keywords": [],
