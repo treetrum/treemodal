@@ -36,9 +36,6 @@ class TreeModal {
         this.id = el.getAttribute("data-treemodal");
         this.create();
         this.addEventListeners();
-
-        console.log(this);
-
         if (this.options.autoOpen) {
             this.show();
         }
