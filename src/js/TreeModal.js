@@ -1,25 +1,38 @@
 import wrapEl from "./utils/wrapEl";
 
-class TreeModal {
-    static DEFAULT_OPTIONS = {
-        zIndex: 9999,
-        classes: {
-            active: "is-open",
-        },
-        callbacks: {
-            onShow: () => {},
-            onHide: () => {},
-        },
-        autoOpen: false,
-    };
+const DEFAULT_OPTIONS = {
+    selector: "[data-treemodal]",
+    zIndex: 9999,
+    classes: {
+        active: "is-open",
+    },
+    callbacks: {
+        onShow: () => {},
+        onHide: () => {},
+    },
+    autoOpen: false,
+};
 
-    constructor(el, options = {}) {
+const mergeOptions = (custom) => {
+    const customised = { ...DEFAULT_OPTIONS, ...custom };
+    customised.classes = {
+        ...DEFAULT_OPTIONS.classes,
+        ...(custom.classes || {}),
+    };
+    customised.callbacks = {
+        ...DEFAULT_OPTIONS.callbacks,
+        ...(custom.callbacks || {}),
+    };
+    return customised;
+};
+class TreeModal {
+    constructor(el, options = DEFAULT_OPTIONS) {
         if (!el) {
             return;
         }
         this.el = el;
         this.isShown = false;
-        this.options = { ...TreeModal.DEFAULT_OPTIONS, ...options };
+        this.options = mergeOptions(options);
         this.id = el.getAttribute("data-treemodal");
         this.create();
         this.addEventListeners();
@@ -66,7 +79,7 @@ class TreeModal {
         this.wrap = document.createElement("div");
         this.wrap.classList.add("treemodal");
         this.wrap.setAttribute("data-treemodal-id", this.id);
-        this.wrap.style.zIndex = TreeModal.DEFAULT_OPTIONS.zIndex;
+        this.wrap.style.zIndex = this.options.zIndex;
 
         // Create inner
         this.inner = document.createElement("div");
@@ -106,10 +119,11 @@ class TreeModal {
     };
 }
 
-const init = (selector = "[data-treemodal]") => {
-    const els = document.querySelectorAll(selector);
+const init = (options = DEFAULT_OPTIONS) => {
+    const settings = mergeOptions(options);
+    const els = document.querySelectorAll(settings.selector);
     els.forEach((el) => {
-        new TreeModal(el);
+        new TreeModal(el, settings);
     });
 };
 
