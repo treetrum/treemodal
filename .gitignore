@@ -2,3 +2,4 @@
 node_modules
 testapp/dist
 dist
+.DS_Store
