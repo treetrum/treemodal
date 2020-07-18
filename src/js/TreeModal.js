@@ -101,7 +101,7 @@ class TreeModal {
 
     show = () => {
         this.wrap.classList.add(this.options.classes.active);
-        this.options.callbacks.onShow();
+        this.options.callbacks.onShow(this);
         requestAnimationFrame(() => {
             this.isShown = true;
         });
@@ -109,7 +109,7 @@ class TreeModal {
 
     hide = () => {
         this.wrap.classList.remove(this.options.classes.active);
-        this.options.callbacks.onHide();
+        this.options.callbacks.onHide(this);
         requestAnimationFrame(() => {
             this.isShown = false;
         });
