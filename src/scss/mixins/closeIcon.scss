@@ -7,7 +7,7 @@
     &::after {
         position: absolute;
         top: 0;
-        left: ($size - $line_thickness) / 2;
+        left: ($size - $line_thickness) * 0.5;
         content: " ";
         height: $size;
         width: $line_thickness;
